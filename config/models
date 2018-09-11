@@ -16,3 +16,39 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     userId UserId Maybe
     deriving Eq
     deriving Show
+
+Spell
+    name Text
+    altname Text Maybe
+    school Text
+    subschool Text
+    descriptor Text
+    spellcraftDc Text
+    level Text
+    components Text
+    castingTime Text
+    range Text
+    target Text
+    area Text
+    effect Text
+    duration Text
+    savingThrow Text
+    spellResistance Text
+    shortDescription Text
+    toDevelop Text
+    materialComponents Text
+    arcaneMaterialComponents Text
+    focus Text
+    description Text
+    xpCost Text
+    arcaneFocus Text
+    wizardFocus Text
+    verbalComponents Text
+    sorcererFocus Text
+    bardFocus Text
+    clericFocus Text
+    druidFocus Text
+    fullText Text
+    reference Text
+
+    deriving Eq Show
