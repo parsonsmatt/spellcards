@@ -1,0 +1,10 @@
+<div .container>
+    <div .row>
+        <h1>
+            Full Spell Index
+
+        <p>
+            This table contains all of the spells that this website knows about.
+            You can click on a spell name to be taken to a page displaying information about that spell.
+
+        ^{spellList}

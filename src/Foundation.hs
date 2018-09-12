@@ -7,6 +7,7 @@
 {-# LANGUAGE ExplicitForAll #-}
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE InstanceSigs #-}
+{-# LANGUAGE LambdaCase #-}
 
 module Foundation where
 
@@ -15,11 +16,8 @@ import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Text.Hamlet          (hamletFile)
 import Text.Jasmine         (minifym)
 import Control.Monad.Logger (LogSource)
+import qualified Data.ByteString.Char8 as BS8
 
--- Used only when in "auth-dummy-login" setting is enabled.
-import Yesod.Auth.Dummy
-
-import Yesod.Auth.OpenId    (authOpenId, IdentifierType (Claimed))
 import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
@@ -190,8 +188,16 @@ instance YesodBreadcrumbs App where
     breadcrumb
         :: Route App  -- ^ The route the user is visiting currently.
         -> Handler (Text, Maybe (Route App))
-    breadcrumb HomeR = return ("Home", Nothing)
-    breadcrumb  _ = return ("home", Nothing)
+    breadcrumb = \case
+        HomeR ->
+            return ("Home", Nothing)
+        SpellIndexR ->
+            return ("Spell List", Just HomeR)
+        SpellR spellId -> do
+            spell <- cachedBy (BS8.pack (show spellId)) $ runDB $ get404 spellId
+            return (spellName spell, Just SpellIndexR)
+        _ ->
+            return ("home", Nothing)
 
 -- How to run database actions.
 instance YesodPersist App where

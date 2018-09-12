@@ -7,3 +7,7 @@
 /robots.txt RobotsR GET
 
 / HomeR GET
+
+-- Spells
+/spells          SpellIndexR    GET
+/spells/#SpellId SpellR         GET

@@ -1,0 +1,97 @@
+<div .container>
+    <div .row>
+        <h1>
+            #{spellName}
+
+        <div .col-md-6>
+
+            <h2>Description:
+            #{Blaze.preEscapedText spellDescription}
+
+        <div .col-md-6>
+            <table .table .table-striped>
+                <tr>
+                    <td> Level:
+                    <td> #{spellLevel}
+                <tr>
+                    <td> School:
+                    <td> #{spellSchool}
+                <tr>
+                    <td> Subschool:
+                    <td> #{spellSubschool}
+                <tr>
+                    <td> Descriptor:
+                    <td> #{spellDescriptor}
+                <tr>
+                    <td> Spellcraft DC:
+                    <td> #{spellSpellcraftDc}
+                <tr>
+                    <td> Components:
+                    <td> #{spellComponents }
+                <tr>
+                    <td> Casting Time:
+                    <td> #{spellCastingTime }
+                <tr>
+                    <td> Range:
+                    <td> #{spellRange }
+                <tr>
+                    <td> Target:
+                    <td> #{spellTarget }
+                <tr>
+                    <td> Area:
+                    <td> #{spellArea }
+                <tr>
+                    <td> Effect:
+                    <td> #{spellEffect }
+                <tr>
+                    <td> Duration:
+                    <td> #{spellDuration }
+                <tr>
+                    <td> Saving Throw:
+                    <td> #{spellSavingThrow }
+                <tr>
+                    <td> Spell Resistance:
+                    <td> #{spellSpellResistance }
+                <tr>
+                    <td> Short Description:
+                    <td> #{spellShortDescription }
+                <tr>
+                    <td> To Develop:
+                    <td> #{spellToDevelop }
+                <tr>
+                    <td> Material Components:
+                    <td> #{spellMaterialComponents }
+                <tr>
+                    <td> Arcane Material Components:
+                    <td> #{spellArcaneMaterialComponents }
+                <tr>
+                    <td> Focus:
+                    <td> #{spellFocus }
+                <tr>
+                    <td> XP Cost:
+                    <td> #{spellXpCost }
+                <tr>
+                    <td> Arcane Focus:
+                    <td> #{spellArcaneFocus }
+                <tr>
+                    <td> Wizard Focus:
+                    <td> #{spellWizardFocus }
+                <tr>
+                    <td> Verbal Components:
+                    <td> #{spellVerbalComponents }
+                <tr>
+                    <td> Sorceror Focus:
+                    <td> #{spellSorcererFocus }
+                <tr>
+                    <td> Bard Focus:
+                    <td> #{spellBardFocus }
+                <tr>
+                    <td> Cleric Focus:
+                    <td> #{spellClericFocus }
+                <tr>
+                    <td> Druid Focus:
+                    <td> #{spellDruidFocus }
+                <tr>
+                    <td> Reference:
+                    <td> #{spellReference }
+
