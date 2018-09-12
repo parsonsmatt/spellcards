@@ -57,40 +57,5 @@ getSpellR spellId = do
 
 getSpellListR :: Handler Html
 getSpellListR = do
-    spellList <- readSpellList
-    defaultLayout $ [whamlet|
-        #{tshow spellList}
-    |]
-
-putUpdateSpellListR :: SpellId -> Handler ()
-putUpdateSpellListR spellId = do
-    addSpell spellId
-    redirectUltDest HomeR
-
-deleteUpdateSpellListR :: SpellId -> Handler ()
-deleteUpdateSpellListR spellId = do
-    removeSpell spellId
-    redirectUltDest HomeR
-
-addSpell :: SpellId -> Handler ()
-addSpell spellId = do
-    spellList <- readSpellList
-    writeList (Set.insert spellId spellList)
-
-removeSpell :: SpellId -> Handler ()
-removeSpell spellId = do
-    spellList <- readSpellList
-    writeList (Set.delete spellId spellList)
-
-readSpellList :: Handler (Set SpellId)
-readSpellList = do
-    mlist <- lookupSession "spell-list"
-    case mlist >>= readMay of
-        Nothing -> do
-            writeList mempty
-            pure mempty
-        Just list ->
-            pure (Set.fromList (map toSqlKey list))
-
-writeList :: Set SpellId -> Handler ()
-writeList = setSession "spell-list" . pack . show . map fromSqlKey . Set.toList
+    defaultLayout $
+        $(widgetFile "spell-list")
