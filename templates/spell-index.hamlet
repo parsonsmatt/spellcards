@@ -7,4 +7,9 @@
             This table contains all of the spells that this website knows about.
             You can click on a spell name to be taken to a page displaying information about that spell.
 
+        <input .form-control #spell-filter type="text" placeholder="Filter spells" />
+
+        <button #clear-spells .btn .btn-large .btn-danger>
+            Clear spells
+
         ^{spellList}

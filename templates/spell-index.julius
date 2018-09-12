@@ -1,0 +1,71 @@
+function toggleButtonClick(button, spellId) {
+    var spellList = loadSpellList();
+    if (spellList.has(spellId)) {
+        removeSpellFromList(spellId);     
+        button.textContent = "Add Spell"
+        button.classList = "toggle-button btn-large btn-success"
+    } else {
+        addSpellToList(spellId);     
+        button.textContent = "Remove Spell"
+        button.classList = "toggle-button btn-large btn-danger"
+    }
+}
+function addSpellToList(spellId) {
+    var theSet = loadSpellList();
+    var added = theSet.add(spellId);
+    var asArray = Array.from(theSet.values());
+    localStorage.setItem("spell-list", JSON.stringify(asArray));
+}
+
+function loadSpellList() {
+    var storage = localStorage.getItem("spell-list") || "[]";
+    var parsed = JSON.parse(storage);
+    return new Set(parsed);
+}
+
+function clearSpellList() {
+    localStorage.setItem("spell-list", JSON.stringify([]));    
+    initializeToggles();
+}
+
+function removeSpellFromList(spellId) {
+    var theSet = loadSpellList();
+    var added = theSet.delete(spellId);
+    var asArray = Array.from(theSet.values());
+    localStorage.setItem("spell-list", JSON.stringify(asArray));
+}
+
+function initializeToggles() {
+    var spellList = loadSpellList();
+
+    $(".toggle-button")
+        .toArray()
+        .forEach(function(btn) {
+            var spellId = Number(btn.dataset.spellId, 10);
+            if (spellList.has(spellId)) {
+                btn.classList = "toggle-button btn-large btn-danger";
+                btn.textContent = "Remove Spell";
+            } else {
+                btn.classList = "toggle-button btn-large btn-success";
+                btn.textContent = "Add Spell";
+            }
+            btn.onclick = function() { return toggleButtonClick(btn, spellId); }
+        });
+}
+
+$(document).ready(function() {
+    // Initialize the toggle buttons
+    initializeToggles();
+
+    // Initialize the filter.
+    $("#spell-filter").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    $("#clear-spells").on("click", function() {
+        clearSpellList(); 
+    });
+});

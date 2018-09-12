@@ -11,3 +11,6 @@
 -- Spells
 /spells          SpellIndexR    GET
 /spells/#SpellId SpellR         GET
+
+-- The List
+/spell-list             SpellListR  GET
