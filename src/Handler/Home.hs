@@ -9,7 +9,6 @@ module Handler.Home where
 
 import Import
 
-import qualified Data.Set as Set
 import Yesod.Table hiding (maybe, show)
 import qualified Text.Blaze as Blaze
 
